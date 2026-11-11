@@ -1,6 +1,7 @@
 # tools
 
-This repository has no build step — publishing is a push — with two exceptions:
+This repository has no build step — publishing is a push (to `main`, served at
+`https://assets.lekh.app/`) — with two exceptions:
 the generated index files of a published folder, and the derived `stencils/v5/`
 folder (below). The folder the current apps read, and the one edited, is
 **`stencils/v6/`** (below); `v5` and older are frozen.
@@ -48,14 +49,14 @@ plus `azure.groups`; GCP has `gcp.groups`, `gcp.core_products` and
 `gcp.product_categories`. Regenerate them with
 
 ```sh
-make -C svg2lekh lekhboard      # writes aws_*.json, azure_*.json and gcp_*.json
+make -C svg2lekh assets         # writes aws_*.json, azure_*.json and gcp_*.json
 ```
 
-(`LEKHBOARD_V4=<dir>` overrides the destination), then rerun the index generator
+(`ASSETS_V4=<dir>` overrides the destination), then rerun the index generator
 in the same commit. Its default destination is `stencils/v4`, which is frozen:
-point `LEKHBOARD_V4` at the folder being edited (`stencils/v6`). For an explicitly authorized provider refresh, remove only
+point `ASSETS_V4` at the folder being edited (`stencils/v6`). For an explicitly authorized provider refresh, remove only
 the 36 listed legacy Azure/GCP service files with
-`LEKHBOARD_V4_REFRESH=1 make -C svg2lekh lekhboard-clean-retired`; the normal
+`ASSETS_V4_REFRESH=1 make -C svg2lekh assets-clean-retired`; the normal
 target refuses to copy while those stale paths remain. Do not run that cleanup
 after a v4-consuming app ships. A hand edit to generated
 output is lost at the next regeneration. Of the sixty-one unrelated files,
@@ -136,7 +137,7 @@ node tools/build-v5.js --check    # fail if stencils/v5 is not a fresh derivatio
 
 Defaults: `--from stencils/v4 --to stencils/v5 --scripts
 ../lekhjs/src/generators/scripts.generated.json` (the canonical JS texts lekhjs
-commits; lekhboard depends on nothing else from lekhjs).
+commits; assets depends on nothing else from lekhjs).
 
 - Every `v4` file is copied **byte for byte**, except a file holding a Lua
   generator (`scriptfile`, or a non-JS `script`) — today only `wireframe.json`.
@@ -199,7 +200,7 @@ code. The codes: `port_without_id`, `port_duplicate_id`,
 closed; a template the engine never connects to — an open polygon, an open path
 template or a Bézier curve with no `connect` and no port, or `connect: "none"` —
 is exempt). The engine keeps the same rules in its own module; this is
-lekhboard's copy, and both suites share the fixtures in
+assets' copy, and both suites share the fixtures in
 `tools/fixtures/check-templates/` by content. Its tests:
 `node --test tools/*.test.js` (Node 22 and later take test globs, not a bare
 folder).

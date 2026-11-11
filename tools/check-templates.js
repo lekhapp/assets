@@ -6,7 +6,7 @@
  * template in a published library file must pass before it is pushed.
  *
  * The engine holds the same rules in its own module and runs them over its
- * compiled-in sets; this is lekhboard's own copy (lekhboard depends on nothing
+ * compiled-in sets; this is assets' own copy (assets depends on nothing
  * outside itself), and the two test suites share their fixtures by content
  * (tools/fixtures/check-templates/). It reads plain JSON and evaluates nothing.
  *

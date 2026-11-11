@@ -36,11 +36,11 @@
  *
  *     --check   derive into a temporary folder and compare it with --to file by
  *               file; write nothing and exit 1 if anything differs (missing,
- *               extra or changed files). Run before every lekhboard push until
+ *               extra or changed files). Run before every assets push until
  *               the TS cutover.
  *     --core, --lua   passed through to generate-stencil-index.js.
  *
- * lekhboard has no build dependency on lekhjs beyond reading the scripts file.
+ * assets has no build dependency on lekhjs beyond reading the scripts file.
  */
 
 const fs = require('fs');
@@ -433,7 +433,7 @@ function main() {
     const log = opts.quiet ? () => {} : (s) => process.stdout.write(s + '\n');
     // Always derive into a temporary folder first: a failed build (fail() exits) leaves --to
     // untouched, never half written (AC-GEN-14). The exit hook also removes the folder then.
-    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'lekhboard-v5-'));
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'assets-v5-'));
     process.on('exit', () => fs.rmSync(tmp, { recursive: true, force: true }));
     if (!opts.check) {
         build(opts, tmp, log);
