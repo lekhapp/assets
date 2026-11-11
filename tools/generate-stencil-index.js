@@ -8,7 +8,7 @@
  *
  * The catalogue is two sets, not one:
  *
- *   published  lekhboard/stencils/v4/*.json          128 files
+ *   published  assets/stencils/v4/*.json             128 files
  *   core       tools/core-stencils/core/*.json       the files that carry a
  *                                                    `library` array (13 today)
  *
@@ -18,7 +18,7 @@
  * plain box or a swimlane. The core set and the Lua generator sources the
  * text syntax is derived from are committed in THIS repository, under
  * tools/core-stencils/ (core/ and lua/wireframe_src/): the core engine they came
- * from is being retired, so lekhboard holds them and reads nothing outside
+ * from is being retired, so assets holds them and reads nothing outside
  * itself. If an input is missing the script FAILS rather than publishing a
  * catalogue without a rectangle.
  *
@@ -28,7 +28,7 @@
  * Search keywords and the `container` flag come from the hand-authored
  * tools/stencil-keywords.json, which is validated here: a wrong shape, or an id
  * or library the catalogue does not carry, FAILS the build naming the problem
- * (lekhboard has no test runner, so this is the test).
+ * (assets has no test runner, so this is the test).
  *
  * Usage:
  *   node tools/generate-stencil-index.js [options]
